@@ -1,0 +1,29 @@
+
+@import "../../../style/mixin";
+
+
+
+.image-upload {
+    @include mobile-down {
+        max-width: 100%;
+    }
+    @include laptop-down {
+        max-width: 70%;
+    }
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: 2px dashed blue;
+    &__button {
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    &__preview {
+        img {
+            max-width: 90%;
+            margin: 0 auto;
+            display: block;
+        }
+        max-width: 100%;
+    }
+}

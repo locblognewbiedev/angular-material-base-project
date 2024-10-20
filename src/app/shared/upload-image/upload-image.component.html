@@ -1,0 +1,14 @@
+<div class="image-upload">
+  <input
+    class="image-upload__button"
+    type="file"
+    (change)="onFileChange($event)"
+  />
+  <div class="image-upload__preview">
+    <img
+      *ngIf="selectedImageBase64"
+      [src]="selectedImageBase64"
+      alt="Uploaded Image"
+    />
+  </div>
+</div>

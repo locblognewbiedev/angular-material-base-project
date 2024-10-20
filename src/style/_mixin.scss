@@ -1,0 +1,20 @@
+@import './variable';
+
+@mixin mobile-down {
+    $breakpoint: map-get($breakpoints, 'xs');
+    @media screen and (max-width: ($breakpoint - 1)) {
+      html {
+          font-size: 50%;
+      }
+      @content;
+    }
+  }
+
+
+
+@mixin laptop-down {
+    $breakpoint: map-get($breakpoints, md);
+    @media screen and (max-width: ($breakpoint - 1)) {
+        @content;
+    }
+}

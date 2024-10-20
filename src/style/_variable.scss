@@ -1,0 +1,8 @@
+
+$mobile: 48em;  // 768px
+$laptop: 85.375em;  // 1366px
+
+$breakpoints: (
+  xs: $mobile,
+  md: $laptop,
+);

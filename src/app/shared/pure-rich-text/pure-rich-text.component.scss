@@ -1,0 +1,24 @@
+@import "../../../style/mixin";
+
+
+.rich-text{
+    margin: 0 auto;
+    @include mobile-down {
+        width: 100%;
+    }
+    @include laptop-down {
+        width: 70%;
+    }
+    textarea {
+        border: 2px solid blue;
+        border-radius: 4px;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: .5rem;
+        &:focus {
+            outline: none;
+        }
+    }
+    
+}
