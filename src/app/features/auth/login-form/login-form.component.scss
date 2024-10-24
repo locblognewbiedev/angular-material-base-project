@@ -1,0 +1,5 @@
+@import "../../../../style/mixin";
+
+.login-form {
+    @include form-style();
+}

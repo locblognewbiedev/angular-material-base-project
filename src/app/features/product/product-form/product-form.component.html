@@ -1,0 +1,81 @@
+<mat-card>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <p *ngIf="product?.id">ID: {{ product?.id }}</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Tên sản phẩm</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="productForm.get('name')?.hasError('required')"
+        >Tên sản phẩm là bắt buộc.</mat-error
+      >
+    </mat-form-field>
+    <app-upload-image formControlName="image"></app-upload-image>
+    <mat-form-field appearance="fill">
+      <mat-label>Giá</mat-label>
+      <input matInput type="number" formControlName="price" />
+      <mat-error *ngIf="productForm.get('price')?.hasError('required')"
+        >Giá là bắt buộc.</mat-error
+      >
+      <mat-error *ngIf="productForm.get('price')?.hasError('min')"
+        >Giá không được âm.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Số lượng đã bán</mat-label>
+      <input matInput type="number" formControlName="sold" />
+      <mat-error *ngIf="productForm.get('sold')?.hasError('required')"
+        >Số lượng đã bán là bắt buộc.</mat-error
+      >
+      <mat-error *ngIf="productForm.get('sold')?.hasError('min')"
+        >Số lượng không được âm.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Số lượng còn lại</mat-label>
+      <input matInput type="number" formControlName="remaining_quantity" />
+      <mat-error
+        *ngIf="productForm.get('remaining_quantity')?.hasError('required')"
+        >Số lượng còn lại là bắt buộc.</mat-error
+      >
+      <mat-error *ngIf="productForm.get('remaining_quantity')?.hasError('min')"
+        >Số lượng không được âm.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-slide-toggle
+      formControlName="active"
+      (change)="onToggleChange()"
+      [checked]="productForm.get('active')?.value === ProductStatus.Active"
+    >
+      Active
+    </mat-slide-toggle>
+    <app-pure-rich-text formControlName="description"></app-pure-rich-text>
+    <mat-form-field appearance="fill">
+      <mat-label>Thương hiệu</mat-label>
+      <mat-select formControlName="brand_id" [value]="brandSelected">
+        <mat-option *ngFor="let brand of brands" [value]="brand.id">{{
+          brand.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Danh mục</mat-label>
+      <mat-select formControlName="category_id">
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{
+          category.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="productForm.invalid"
+    >
+      Cập nhật
+    </button>
+  </form>
+</mat-card>

@@ -36,17 +36,43 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { UploadImageComponent } from './shared/upload-image/upload-image.component';
 import { PureRichTextComponent } from './shared/pure-rich-text/pure-rich-text.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ProductCreateComponent } from './features/product/product-create/product-create.component';
+import { ProductFormComponent } from './features/product/product-form/product-form.component';
+import { ProductUpdateComponent } from './features/product/product-update/product-update.component';
+import { ProductListComponent } from './features/product/product-list/product-list.component';
+import { AdminComponent } from './features/admin/admin/admin.component';
+import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
+import { RegisterFormComponent } from './features/auth/register-form/register-form.component';
+import { RegisterPageComponent } from './features/auth/register-page/register-page.component';
+import { LoginFormComponent } from './features/auth/login-form/login-form.component';
+import { LoginPageComponent } from './features/auth/login-page/login-page.component';
+import { JwtInterceptor } from './interceptors/jwt.service';
+import { HomepageComponent } from './features/index/homepage/homepage.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmDialogComponent,
     UploadImageComponent,
-    PureRichTextComponent
+    PureRichTextComponent,
+    ProductCreateComponent,
+    ProductFormComponent,
+    ProductUpdateComponent,
+    ProductListComponent,
+    AdminComponent,
+    DashboardComponent,
+    RegisterFormComponent,
+    RegisterPageComponent,
+    LoginFormComponent,
+    LoginPageComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +115,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     FormsModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor,multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
